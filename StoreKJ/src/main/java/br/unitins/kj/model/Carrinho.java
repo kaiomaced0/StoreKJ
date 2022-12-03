@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import br.unitins.kj.model.especial.Cupom;
@@ -22,12 +22,11 @@ public class Carrinho extends DefaultEntity{
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 	
-	@OneToMany
+	@ManyToMany
 	@Column(name="cupons")
 	private List<Cupom> cupons;
 	
-	@OneToOne
-	@JoinColumn(name = "id_endereco", unique = true)
+	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	
 	@Column(name = "valor_frete")
