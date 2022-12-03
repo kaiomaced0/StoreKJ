@@ -15,15 +15,21 @@ import br.unitins.kj.model.especial.Gostei;
 
 @Entity
 public class Usuario extends DefaultEntity{
-	
+	@Column(name="nome_usuario")
 	private String nome;
 	
+	@Column(name="login_usuario")
 	@NotBlank(message=" Login não informado!")
 	private String login;
 	
+	@Column(name="pass_usuario")
 	@NotBlank(message=" Senha não Informada!")
 	private String senha;
 	
+	@Column(name="cpf_usuario")
+	private String cpf;
+	
+	@Column(name="data_nascimento_usuario")
 	private LocalDate dataNascimento;
 
 	private Perfil perfil;
@@ -32,10 +38,11 @@ public class Usuario extends DefaultEntity{
 	private Cidade cidade;
 	
 	@OneToOne
+	@Column(name="marcados_gostei")
 	private Gostei gostei;
 	
 	@OneToMany
-	@Column(name="endereco")
+	@Column(name="enderecos_usuario")
 	private List<Endereco> enderecos;
 	
 	private Double valorGastoLoja;
@@ -87,6 +94,12 @@ public class Usuario extends DefaultEntity{
 	}
 	public void setValorGastoLoja(Double valorGastoLoja) {
 		this.valorGastoLoja = valorGastoLoja;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	
 	

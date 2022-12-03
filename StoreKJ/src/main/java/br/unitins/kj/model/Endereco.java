@@ -6,10 +6,15 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco extends DefaultEntity{
+	@Column(name="nome_endereco")
 	private String nome;
+	@Column(name="cidade_endereco")
 	private Cidade cidade;
+	@Column(name="bairro_endereco")
 	private String bairro;
+	@Column(name="cep_endereco")
 	private String cep;
+	@Column(name="adicional")
 	private String infoAdicional;
 
 	@ManyToOne

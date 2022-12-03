@@ -13,6 +13,7 @@ public class Compra extends DefaultEntity {
 	@Column(name="carrinho_compra")
 	private Carrinho carrinho;
 	
+	@NotBlank
 	@OneToOne
 	@Column(name="pagamento_compra", unique=true)
 	private Pagamento pagamento;

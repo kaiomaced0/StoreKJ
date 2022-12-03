@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 public class Cidade extends DefaultEntity{
 	private String nome;
 	
+	@Column(name="lista_cep_cidade")
+	private List<String> cep;
 	@ManyToOne
 	@Column(name="id_estado")
 	private Estado estado;
@@ -33,6 +35,14 @@ public class Cidade extends DefaultEntity{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<String> getCep() {
+		return cep;
+	}
+
+	public void setCep(List<String> cep) {
+		this.cep = cep;
 	}
 
 }
