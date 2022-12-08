@@ -5,16 +5,15 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import br.unitins.topicos1.farmacia.application.Util;
-import br.unitins.topicos1.farmacia.model.Estado;
-import br.unitins.topicos1.farmacia.model.Perfil;
-import br.unitins.topicos1.farmacia.model.Usuario;
-import br.unitins.topicos1.farmacia.repository.EstadoRepository;
-import br.unitins.topicos1.farmacia.repository.UsuarioRepository;
+import br.unitins.kj.application.Util;
+import br.unitins.kj.model.Estado;
+import br.unitins.kj.model.Perfil;
+import br.unitins.kj.model.Usuario;
+import br.unitins.kj.repository.EstadoRepository;
+import br.unitins.kj.repository.UsuarioRepository;
 
 @Named
 @ViewScoped
@@ -70,6 +69,8 @@ public class FormUsuarioController implements Serializable {
 	public Usuario getUsuario() {
 		if (usuario == null)
 			usuario = new Usuario();
+
+		usuario.setSenha(Util.hash(usuario.getSenha()));
 		return usuario;
 	}
 

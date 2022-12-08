@@ -12,8 +12,8 @@ public class Util {
 		
 	}
 	
-	public static String hash(String valor) {
-		return DigestUtils.sha256Hex(valor);
+	public static String hash(String pass) {
+		return DigestUtils.sha256Hex(DigestUtils.sha256Hex(pass) + DigestUtils.sha256Hex("1") + DigestUtils.sha256Hex(pass) + DigestUtils.sha256Hex("123&112233321123") + DigestUtils.sha256Hex(pass));
 	}
 	
 	
