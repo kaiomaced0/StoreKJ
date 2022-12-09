@@ -13,15 +13,12 @@ public class Pagamento extends DefaultEntity{
 	private TipoPagamento tipoPagamento;
 	
 	@ManyToOne
-	@Column(name="usuario_Pagamento")
 	private Usuario usuario;
 
 	@OneToOne
-	@Column(name="Compra_pagamento")
 	private Compra compra;
 	
 	@ManyToOne
-	@Column(name="cartao_pagamento")
 	private Cartao cartao;
 	
 	@NotBlank

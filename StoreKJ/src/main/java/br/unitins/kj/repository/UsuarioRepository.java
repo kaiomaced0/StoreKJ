@@ -1,5 +1,7 @@
 package br.unitins.kj.repository;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -9,8 +11,17 @@ import br.unitins.kj.model.Usuario;
 
 @ApplicationScoped
 public class UsuarioRepository extends Repository<Usuario>{
+	
+	public Usuario buscarPeloId(Integer id) {
+		return getEntityManager().find(Usuario.class, id);
+	}
+	
+	public List<Usuario> buscarTodos() {
+		Query query = getEntityManager().createQuery("SELECT u FROM Usuario u ORDER BY u.nome");
+		return query.getResultList();
+	}
 
-public Usuario buscar(String login, String senha) throws RepositoryException {
+	public Usuario buscar(String login, String senha) throws RepositoryException {
 		
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT "); 

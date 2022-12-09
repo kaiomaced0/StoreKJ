@@ -16,7 +16,6 @@ public class Gostei extends DefaultEntity {
 	private List<Produto> produtos;
 	
 	@OneToOne
-	@Column(name="id_usuario", unique=true)
 	private Usuario usuario;
 
 	public List<Produto> getProdutos() {

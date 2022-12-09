@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 public class Chat extends DefaultEntity{
 
 	@ManyToOne
-	@Column(name="id_usuario")
 	private Usuario usuario;
 	
 	private List<Mensagem> mensagens;

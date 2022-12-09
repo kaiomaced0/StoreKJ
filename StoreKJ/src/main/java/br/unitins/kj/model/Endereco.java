@@ -18,7 +18,6 @@ public class Endereco extends DefaultEntity{
 	private String infoAdicional;
 
 	@ManyToOne
-	@Column(name="usuario_endereco", unique=true)
 	private Usuario usuario;
 	
 	public String getNome() {

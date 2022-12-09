@@ -13,7 +13,8 @@ import br.unitins.kj.model.ProdutoQuantidade;
 @Named
 public class CarrinhoController implements Serializable{
 
-	private static final long serialVersionUID = -5026285540821281897L;
+	
+	private static final long serialVersionUID = 2997702547622264432L;
 	
 	private Carrinho carrinho;
 	

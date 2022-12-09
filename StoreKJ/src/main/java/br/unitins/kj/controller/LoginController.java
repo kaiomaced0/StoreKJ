@@ -1,5 +1,6 @@
 package br.unitins.kj.controller;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,17 +14,23 @@ import br.unitins.kj.repository.UsuarioRepository;
 
 @Named
 @RequestScoped
-public class LoginController {
+public class LoginController implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9013820690394591629L;
 	private Usuario usuario;
 	
 	public String logar() {
 		
 		UsuarioRepository repo = new UsuarioRepository();
 		
-		Usuario usuarioLogado;
+		Usuario usuarioLogado = null;
 		try {
-			usuarioLogado = repo.buscar(getUsuario().getLogin(), Util.hash(getUsuario().getSenha()));
+			if(usuarioLogado != null)
+				usuarioLogado.setSenha(Util.hash(usuarioLogado.getSenha()));
+			usuarioLogado = repo.buscar(getUsuario().getLogin(), getUsuario().getSenha());
 		} catch (RepositoryException e) {
 			// quando entrar nesse exception, significa que o usuario nao foi encontrado
 			e.printStackTrace();

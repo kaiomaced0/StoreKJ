@@ -38,7 +38,6 @@ public class Usuario extends DefaultEntity{
 	private Cidade cidade;
 	
 	@OneToOne
-	@Column(name="marcados_gostei")
 	private Gostei gostei;
 	
 	@OneToMany

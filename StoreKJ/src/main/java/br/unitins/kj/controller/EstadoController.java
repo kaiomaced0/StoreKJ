@@ -45,6 +45,14 @@ public class EstadoController implements Serializable {
 	public void excluir(Usuario usuario) {
 		
 	}
+
+	public List<UsuarioRepository> getListaUsuarioRepository() {
+		return listaUsuarioRepository;
+	}
+
+	public void setListaUsuarioRepository(List<UsuarioRepository> listaUsuarioRepository) {
+		this.listaUsuarioRepository = listaUsuarioRepository;
+	}
 	
 	
 

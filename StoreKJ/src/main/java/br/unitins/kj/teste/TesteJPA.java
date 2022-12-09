@@ -10,13 +10,13 @@ import br.unitins.kj.model.Usuario;
 public class TesteJPA {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Store-KJ");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StoreKJ");
 		EntityManager em = emf.createEntityManager();
 		
 		Usuario usuario = new Usuario();
-		usuario.setNome("test1");
-		usuario.setLogin("1");
-		usuario.setSenha("1");
+		usuario.setNome("test123");
+		usuario.setLogin("123");
+		usuario.setSenha("123");
 		
 		em.getTransaction().begin();
 		em.persist(usuario);

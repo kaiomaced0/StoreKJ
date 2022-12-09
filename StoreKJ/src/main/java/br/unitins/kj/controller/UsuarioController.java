@@ -4,37 +4,36 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.faces.view.facelets.FaceletContext;
 import javax.inject.Named;
 
-import br.unitins.topicos1.farmacia.application.Util;
-import br.unitins.topicos1.farmacia.model.Estado;
-import br.unitins.topicos1.farmacia.model.Perfil;
-import br.unitins.topicos1.farmacia.model.Usuario;
-import br.unitins.topicos1.farmacia.repository.EstadoRepository;
-import br.unitins.topicos1.farmacia.repository.UsuarioRepository;
+import br.unitins.kj.application.Util;
+import br.unitins.kj.model.Cidade;
+import br.unitins.kj.model.Perfil;
+import br.unitins.kj.model.Usuario;
+import br.unitins.kj.repository.CidadeRepository;
+import br.unitins.kj.repository.UsuarioRepository;
+
 
 @Named
 @ViewScoped
 public class UsuarioController implements Serializable {
 	
-	private static final long serialVersionUID = 168067236765100328L;
+	
+	private static final long serialVersionUID = -6483325428024548566L;
+	
 	private Usuario usuario = null;
 	private List<Usuario> listaUsuario;
-	private List<Estado> listaEstado;
+	private List<Cidade> listaCidade;
 	
-	public List<Estado> getListaEstado() {
-		if (listaEstado == null) { 
-			EstadoRepository repo = new EstadoRepository();
-			listaEstado = repo.buscarTodos();
+	public List<Cidade> getListaCidade() {
+		if (listaCidade == null) { 
+			CidadeRepository repo = new CidadeRepository();
+			listaCidade = repo.buscarTodos();
 		}
-		return listaEstado;
+		return listaCidade;
 	}
 	
 	public Perfil[] getListaPerfil() {

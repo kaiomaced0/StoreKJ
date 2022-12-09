@@ -13,8 +13,8 @@ public class Cidade extends DefaultEntity{
 	
 	@Column(name="lista_cep_cidade")
 	private List<String> cep;
+	
 	@ManyToOne
-	@Column(name="id_estado")
 	private Estado estado;
 	
 	@OneToMany

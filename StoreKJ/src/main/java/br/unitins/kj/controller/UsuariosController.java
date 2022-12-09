@@ -9,9 +9,8 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import br.unitins.topicos1.farmacia.application.Util;
-import br.unitins.topicos1.farmacia.model.Usuario;
-import br.unitins.topicos1.farmacia.repository.UsuarioRepository;
+import br.unitins.kj.model.Usuario;
+import br.unitins.kj.repository.UsuarioRepository;
 
 @Named
 @ViewScoped

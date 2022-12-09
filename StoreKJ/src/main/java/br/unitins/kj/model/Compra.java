@@ -15,7 +15,6 @@ public class Compra extends DefaultEntity {
 	
 	@NotBlank
 	@OneToOne
-	@Column(name="pagamento_compra", unique=true)
 	private Pagamento pagamento;
 	
 	@OneToOne
@@ -24,7 +23,6 @@ public class Compra extends DefaultEntity {
 	private Boolean pagamentoRealizado;
 	
 	@ManyToOne
-	@Column(name="usuario_compra")
 	private Usuario usuario;
 
 	public Carrinho getCarrinho() {

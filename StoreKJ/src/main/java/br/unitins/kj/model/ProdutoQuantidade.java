@@ -1,6 +1,5 @@
 package br.unitins.kj.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -8,7 +7,6 @@ import javax.persistence.ManyToOne;
 public class ProdutoQuantidade extends DefaultEntity{
 	
 	@ManyToOne
-	@Column(name="id_produto")
 	private Produto produto;
 	
 	private Integer quantidade;

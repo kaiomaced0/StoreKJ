@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 public class Cartao extends DefaultEntity{
 	
 	@ManyToOne
-	@Column(name="usuario_cartao")
 	private Usuario usuario;
 	
 	@NotBlank
