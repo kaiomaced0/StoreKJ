@@ -9,10 +9,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.kj.application.Util;
-import br.unitins.kj.model.Estado;
+import br.unitins.kj.model.Cidade;
 import br.unitins.kj.model.Perfil;
 import br.unitins.kj.model.Usuario;
-import br.unitins.kj.repository.EstadoRepository;
+import br.unitins.kj.repository.CidadeRepository;
 import br.unitins.kj.repository.UsuarioRepository;
 
 @Named
@@ -21,7 +21,7 @@ public class FormUsuarioController implements Serializable {
 	
 	private static final long serialVersionUID = -4197665569375141413L;
 	private Usuario usuario = null;
-	private List<Estado> listaEstado;
+	private List<Cidade> listaCidade;
 	
 	public FormUsuarioController() {
 		// obtendo um usuario do flash scoped
@@ -31,12 +31,12 @@ public class FormUsuarioController implements Serializable {
 		setUsuario((Usuario)flash.get("flashUsuario"));
 	}
 	
-	public List<Estado> getListaEstado() {
-		if (listaEstado == null) { 
-			EstadoRepository repo = new EstadoRepository();
-			listaEstado = repo.buscarTodos();
+	public List<Cidade> getListaCidade() {
+		if (listaCidade == null) { 
+			CidadeRepository repo = new CidadeRepository();
+			listaCidade = repo.buscarTodos();
 		}
-		return listaEstado;
+		return listaCidade;
 	}
 	
 	public Perfil[] getListaPerfil() {

@@ -26,11 +26,11 @@
 						itemLabel="#{obj.label}"/>
 				</h:selectOneMenu>
 				
-				<h:outputLabel value="Estado: "/>
-				<h:selectOneMenu value="#{formUsuarioController.usuario.estado}">
+				<h:outputLabel value="Cidade: "/>
+				<h:selectOneMenu value="#{formUsuarioController.usuario.cidade}">
 					<f:selectItem itemLabel="Selecione um Estado ..." />
 					<f:selectItems 
-						value="#{formUsuarioController.listaEstado}" 
+						value="#{formUsuarioController.listaCidade}" 
 						var="obj"
 						itemLabel="#{obj.nome}"/>
 				</h:selectOneMenu>

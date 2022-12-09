@@ -21,15 +21,15 @@ public class LoginController {
 		
 		UsuarioRepository repo = new UsuarioRepository();
 		
-		Usuario usuarioLogado = null;
+		Usuario usuarioLogado;
 		try {
-			usuarioLogado.setSenha(Util.hash(usuarioLogado.getSenha()));
-			usuarioLogado = repo.buscar(getUsuario().getLogin(), getUsuario().getSenha());
+			usuarioLogado = repo.buscar(getUsuario().getLogin(), Util.hash(getUsuario().getSenha()));
 		} catch (RepositoryException e) {
 			// quando entrar nesse exception, significa que o usuario nao foi encontrado
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
 			return null;
+			
 		}
 		
 		Map session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
