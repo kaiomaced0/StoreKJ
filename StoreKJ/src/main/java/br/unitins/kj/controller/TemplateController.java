@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.unitins.kj.application.Session;
+import br.unitins.kj.application.Util;
 import br.unitins.kj.model.Carrinho;
 import br.unitins.kj.model.Usuario;
 import br.unitins.kj.repository.ProdutoRepository;
@@ -48,6 +49,10 @@ public class TemplateController implements Serializable {
 
 	public void setNomeProduto(String nomeProduto) {
 		this.nomeProduto = nomeProduto;
+	}
+	
+	public void home() {
+		Util.redirect("home.xhtml");
 	}
 	
 	public Integer getQuantidadeCarrinho() {

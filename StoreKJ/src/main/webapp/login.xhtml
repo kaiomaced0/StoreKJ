@@ -1,63 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<ui:composition template="/templateoff.xhtml">
+
+<ui:composition template="templateoff.xhtml">
 	<ui:define name="content">
-			<title>Logar</title>
-			<!-- Required meta tags -->
-			<meta charset="utf-8" />
-			<meta name="viewport"
-				content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-			<!-- Bootstrap CSS -->
-			<h:outputStylesheet library="css" name="bootstrap.min.css" />
-			<!-- Costumize CSS -->
-			<h:outputStylesheet library="css" name="style.css" />
-		<h:body>
-			<!-- Container -->
+		<h:form>
 			<div class="container">
-				<div class="row justify-content-md-center">
-					<div class="col-md-6 col-md-auto login-box">
+				<p:card style="width: 25em" styleClass="box" title="Login">
 
-						<h1 class="text-center wdi-red">Login</h1>
-						<hr />
-						<h:form>
-							<div class="form-row">
-								<div class="col-md-12">
-									<h:outputLabel style="margin-bottom:0;" value="Usuário:"
-										styleClass="wdi-red" />
-									<h:inputText
-										styleClass="form-control form-control-lg flat-input"
-										value="#{loginController.usuario.login}" />
-								</div>
-								<div class="col-md-12">
-									<h:outputLabel style="margin-bottom:0;" value="Senha:"
-										styleClass="wdi-red" />
-									<h:inputSecret
-										styleClass="form-control form-control-lg flat-input"
-										value="#{loginController.usuario.senha}" />
-								</div>
-								<h:commandButton value="Logar"
-									styleClass="btn btn-lg btn-block btn-login"
-									action="#{loginController.logar()}" 
-									update="growl">
-									
-								</h:commandButton>
-							</div>
-						</h:form>
-					</div>
-				</div>
+					<span class="ui-float-label"> <p:inputText id="login"
+							style="width:100%" value="#{loginController.usuario.login}" /> <p:outputLabel
+							for="@previous" value="Login" />
+					</span>
+					<br />
+					<span class="ui-float-label"> <p:password style="width:100%"
+							id="senha" value="#{loginController.usuario.senha}" /> <p:outputLabel
+							for="@previous" value="Senha" />
+					</span>
+					<f:facet name="footer">
+						<p:commandButton icon="pi pi-check" value="Entrar"
+							action="#{loginController.logar}" process="@this login senha"
+							update="@form, growl">
+
+						</p:commandButton>
+						<p:commandButton icon="pi pi-times"
+							value="Cadastrar-se" styleClass="ui-button-secondary"
+							action="#{lofinController.cadastro}"
+							style="margin-left: .5em"/>
+					</f:facet>
+				</p:card>
 			</div>
-
-			<!-- Optional JavaScript -->
-			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-				></script>
-			<script src="js/bootstrap.min.js"></script>
-		</h:body>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

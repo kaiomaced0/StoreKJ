@@ -11,6 +11,7 @@ import javax.inject.Named;
 import br.unitins.kj.application.Session;
 import br.unitins.kj.application.Util;
 import br.unitins.kj.model.AcompanhamentoCompra;
+import br.unitins.kj.model.BandeiraCartao;
 import br.unitins.kj.model.Compra;
 import br.unitins.kj.model.Pagamento;
 import br.unitins.kj.model.ProdutoQuantidade;
@@ -35,6 +36,8 @@ public class FinalizarCompraController implements Serializable{
 	private CompraRepository compraRepository;
 	private PagamentoRepository pagamentoRepository;
 	
+	private List<BandeiraCartao> listaBandeiraCartao;
+	
 	public List<ProdutoQuantidade> getItensCompra() {
 		Session session = Session.getInstance();
 		
@@ -51,6 +54,7 @@ public class FinalizarCompraController implements Serializable{
 	}
 	
 	public void finalizarCompra() {
+	 try {
 		Usuario usuario = (Usuario) Session.getInstance().get("usuarioLogado");
 		
 		// validando o usuario
@@ -59,6 +63,10 @@ public class FinalizarCompraController implements Serializable{
 			return;
 		}
 		
+		if(compra.getCarrinho().getProdutos().size() == 0) {
+			Util.addErrorMessage("Compra vazia");
+			return;
+		}
 		// validando a bandeira do cartao
 		if (getPagamento().getTipoPagamento().equals(TipoPagamento.CREDITO) || 
 				getPagamento().getTipoPagamento().equals(TipoPagamento.DEBITO) ) {
@@ -76,9 +84,13 @@ public class FinalizarCompraController implements Serializable{
 			compra.setAcompanhamentoCompra(acompanhamentoCompra);
 			Util.addInfoMessage("Compra realizada com sucesso.");
 		} catch (Exception e) {
+			Util.redirect("finalizarCompra.xhtml");
 			Util.addErrorMessage(e.getMessage());
 		}
-		
+	 }catch (Exception e) {
+		 Util.redirect("finalizarCompra.xhtml");
+			Util.addErrorMessage(e.getMessage());
+	}
 	}
 
 	public Pagamento getPagamento() {
@@ -89,6 +101,14 @@ public class FinalizarCompraController implements Serializable{
 
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+
+	public List<BandeiraCartao> getListaBandeiraCartao() {
+		return listaBandeiraCartao;
+	}
+
+	public void setListaBandeiraCartao(List<BandeiraCartao> listaBandeiraCartao) {
+		this.listaBandeiraCartao = listaBandeiraCartao;
 	}
 	
 	

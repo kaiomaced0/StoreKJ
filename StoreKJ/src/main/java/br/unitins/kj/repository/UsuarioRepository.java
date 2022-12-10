@@ -12,6 +12,7 @@ import br.unitins.kj.model.Usuario;
 @ApplicationScoped
 public class UsuarioRepository extends Repository<Usuario>{
 	
+	
 	public Usuario buscarPeloId(Integer id) {
 		return getEntityManager().find(Usuario.class, id);
 	}

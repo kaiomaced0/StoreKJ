@@ -8,9 +8,8 @@
 
 <ui:composition  template="template.xhtml">
 <ui:define name="content" >
-	<p:growl id="growl" showDetail="true" life="1600" />
     <h:form id="form">
-        <p:dataView var="produto" value="#{homeController.listaProduto}" rows="6" paginator="true" 
+        <p:dataView var="produto" value="#{homeController.listaProdutos}" rows="6" paginator="true" 
        				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} produtos"
        				
        				rowsPerPageTemplate="6,12,18"
@@ -21,12 +20,12 @@
                <p:dataViewGridItem >
 		        <p:card  style="text-align:center; line-height: 1.5; font-size: large; padding: 0;" >
 		        	<f:facet name="header" >
-		        		#{remedio.nome}
+		        		#{produto.nome}
 		        	</f:facet>
 		            <h:panelGrid columns="1" style="width:100%; padding-bottom: 10px;"  >
 		            	<p:graphicImage library="images" name="produto.png" width="40%"/>
 		
-		                <h:outputText style="font-weight: bold; " value="#{remedio.preco}" >
+		                <h:outputText style="font-weight: bold; " value="#{produto.valor}" >
 		                	<f:convertNumber  currencySymbol="R$" type="currency"/>
 		                </h:outputText>
 		
@@ -34,7 +33,7 @@
 							value="Adicionar ao Carrinho" 
 							icon="pi pi-shopping-cart" 
 							style="font-size: medium; margin-top: 10px;"
-							actionListener="#{homeController.adicionarCarrinho(remedio)}"
+							actionListener="#{homeController.adicionarCarrinho(produto)}"
 							process="@this" ajax="false"
 							update="@carrinhoId"
 						/>

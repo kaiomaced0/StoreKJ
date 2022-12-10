@@ -1,5 +1,6 @@
 package br.unitins.kj.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,25 +21,32 @@ import br.unitins.kj.repository.ProdutoRepository;
 
 @RequestScoped
 @Named
-public class HomeController {
+public class HomeController implements Serializable{
 	
+	private static final long serialVersionUID = -6850123218835628601L;
 	@Inject
 	private ProdutoRepository repository;
-	private List<Produto> listaProduto;
+	private List<Produto> listaProdutos;
+	private ProdutoRepository produtosrepo;
+	
+	Carrinho carrinho;
 	
 	@PostConstruct
 	public void init() {
+	 try {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		Object resultado = flash.get("pesquisaProduto");
 		// verificando se teve consulta de produto pela pesquisa no template
 		if (resultado != null)
-			setProdutos((ArrayList<Produto>)resultado);
+			setListaProdutos((ArrayList<Produto>)resultado);
 		else
-			setProdutos(repository.buscarTodos());
+			setListaProdutos(repository.buscarTodos());
+	 }catch (Exception e) {
+		
+	}
 	}
 	
 	public void adicionarCarrinho(Produto produto) {
-		Carrinho carrinho;
 		
 		Session session = Session.getInstance();
 		if (session.get("carrinho") != null){
@@ -81,16 +89,20 @@ public class HomeController {
 		session.put("carrinho", carrinho);
 		
 		Util.addInfoMessage(item.getProduto().getNome()+ " adicionado ao carrinho.");
-		
+		Util.redirect("home.xhtml");
 	}
 
 
-	public List<Produto> getProdutos() {
-		return listaProduto;
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
 	}
+	
+	
 
-	public void setProdutos(List<Produto> listaProduto) {
-		this.listaProduto = listaProduto;
+	public void setListaProdutos(List<Produto> listaProdutos) {
+		this.listaProdutos = listaProdutos;
 	}
+	
+	
 
 }

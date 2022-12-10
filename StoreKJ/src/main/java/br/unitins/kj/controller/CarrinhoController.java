@@ -7,8 +7,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.kj.application.Session;
+import br.unitins.kj.application.Util;
 import br.unitins.kj.model.Carrinho;
+import br.unitins.kj.model.Compra;
 import br.unitins.kj.model.ProdutoQuantidade;
+import br.unitins.kj.repository.CompraRepository;
 @ViewScoped
 @Named
 public class CarrinhoController implements Serializable{
@@ -29,5 +32,24 @@ public class CarrinhoController implements Serializable{
 			return carrinho.getProdutos();
 		}
 		return carrinho.getProdutos();
+	}
+	
+	public void finalizarCompra() {
+		// verificando se o usuario esta logado
+		if (Session.getInstance().get("usuarioLogado") == null) 
+			Util.redirect("login.xhtml");
+		
+		Carrinho carrinho = (Carrinho) Session.getInstance().get("carrinho");
+		
+		if (carrinho == null || 
+				carrinho.getValorTotal() == null ||
+					carrinho.getProdutos().isEmpty()) {
+			Util.addWarnMessage("Adicione um item no carrinho antes de concluir a carrinho.");
+			return;
+		}
+		
+		
+		Util.redirect("finalizarCompra.xhtml");
+		
 	}
 }

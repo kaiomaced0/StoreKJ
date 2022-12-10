@@ -1,5 +1,7 @@
 package br.unitins.kj.application;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
@@ -14,6 +16,15 @@ public class Util {
 	
 	public static String hash(String pass) {
 		return DigestUtils.sha256Hex(DigestUtils.sha256Hex(pass) + DigestUtils.sha256Hex("1") + DigestUtils.sha256Hex(pass) + DigestUtils.sha256Hex("123&112233321123") + DigestUtils.sha256Hex(pass));
+	}
+	public static void redirect(String page) {
+		try {
+			FacesContext.
+				getCurrentInstance().
+				getExternalContext().redirect(page);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
